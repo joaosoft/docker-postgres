@@ -1,14 +1,11 @@
-run:
-	go run ./bin/launcher/main.go
+master:
+	docker-compose up -d postgres-master
 
-build:
-	go build .
+slave:
+	docker-compose up -d postgres-master
 
-fmt:
-	go fmt ./...
+start:
+	docker-compose up -d
 
-vet:
-	go vet ./*
-
-gometalinter:
-	gometalinter ./*
+stop:
+	docker-compose down

@@ -1,6 +1,35 @@
-version: '3.1'
-services:
+version: '3.3'
 
-volumes:
-  esdata1:
-    driver: local
+services:
+  postgres-master:
+    build: ./master
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+      PG_MAX_WAL_SENDERS: 8
+      PG_WAL_KEEP_SEGMENTS: 32
+    volumes:
+      - "${DOCKER_ENV_DEV_POSTGRES_DATA_PATH}/replication/master:/var/lib/postgresql/data"
+      - "${DOCKER_ENV_DEV_LOG_PATH}/postgres/replication/master:/var/log/postgres"
+    ports:
+      - 7100:5432
+
+  postgres-slave:
+    build: ./slave
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+      PGPASSFILE: /var/lib/postgresql/.pgpass
+      REPLICATE_FROM: postgres-master
+    volumes:
+      - "${DOCKER_ENV_DEV_POSTGRES_DATA_PATH}/replication/slave:/var/lib/postgresql/data"
+      - "${DOCKER_ENV_DEV_LOG_PATH}/postgres/replication/slave:/var/log/postgres"
+    ports:
+      - 7200:5432
+    links:
+      - postgres-master
