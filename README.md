@@ -1,6 +1,7 @@
-# docker-postgres
-[![Build Sta[![Build Status](https://travis-ci.org/joaosoft/docker-postgres.svg?branch=master)](https://travis-ci.org/joaosoft/docker-postgres) | [![codecov](https://codecov.io/gh/joaosoft/docker-postgres/branch/master/graph/badge.svg)](https://codecov.io/gh/joaosoft/docker-postgres) | [![Go Report Card](https://goreportcard.com/badge/github.com/joaosoft/docker-postgres)](https://goreportcard.com/report/github.com/joaosoft/docker-postgres) | [![GoDoc](https://godoc.org/github.com/joaosoft/docker-postgres?status.svg)](https://godoc.org/github.com/joaosoft/docker-postgres)
-tus](https://travis-ci.org/joaosoft/docker-postgres.svg?branch=master)](https://travis-ci.org/joaosoft/docker-postgres) | [![codecov](https://codecov.io/gh/joaosoft/docker-postgres/branch/master/graph/badge.svg)](https://codecov.io/gh/joaosoft/docker-postgres) | [![Go Report Card](https://goreportcard.com/badge/github.com/joaosoft/docker-postgres)](https://goreportcard.com/report/github.com/joaosoft/docker-postgres) | [![GoDoc](https://godoc.org/github.com/joaosoft/docker-postgres?status.svg)](https://godoc.org/github.com/joaosoft/docker-postgres)
+Docker Postgres (Master/Slave)
+==============================
+
+[![Build Status](https://travis-ci.org/joaosoft/docker-postgres.svg?branch=master)](https://travis-ci.org/joaosoft/docker-postgres) | [![codecov](https://codecov.io/gh/joaosoft/docker-postgres/branch/master/graph/badge.svg)](https://codecov.io/gh/joaosoft/docker-postgres) | [![Go Report Card](https://goreportcard.com/badge/github.com/joaosoft/docker-postgres)](https://goreportcard.com/report/github.com/joaosoft/docker-postgres) | [![GoDoc](https://godoc.org/github.com/joaosoft/docker-postgres?status.svg)](https://godoc.org/github.com/joaosoft/docker-postgres)
 
 A simple docker-postgres with master/slave configuration.
 
