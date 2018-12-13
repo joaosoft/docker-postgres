@@ -1,8 +1,8 @@
 version: '3.3'
 
 services:
-  postgres-master:
-    build: ./master
+  postgres.master:
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -13,11 +13,12 @@ services:
     volumes:
       - "${DOCKER_ENV_DEV_POSTGRES_DATA_PATH}/replication/master:/var/lib/postgresql/data"
       - "${DOCKER_ENV_DEV_LOG_PATH}/postgres/replication/master:/var/log/postgres"
+      - "./master/setup.sh:/docker-entrypoint-initdb.d/setup.sh"
     ports:
-      - 7100:5432
+      - 7101:5432
 
-  postgres-slave:
-    build: ./slave
+  postgres.slave:
+    image: postgres:latest
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -25,11 +26,12 @@ services:
       POSTGRES_DB: postgres
       PGDATA: /var/lib/postgresql/data/pgdata
       PGPASSFILE: /var/lib/postgresql/.pgpass
-      REPLICATE_FROM: postgres-master
+      REPLICATE_FROM: postgres.master
     volumes:
       - "${DOCKER_ENV_DEV_POSTGRES_DATA_PATH}/replication/slave:/var/lib/postgresql/data"
       - "${DOCKER_ENV_DEV_LOG_PATH}/postgres/replication/slave:/var/log/postgres"
+      - "./slave/setup.sh:/docker-entrypoint-initdb.d/setup.sh"
     ports:
-      - 7200:5432
+      - 7202:5432
     links:
-      - postgres-master
+      - postgres.master
